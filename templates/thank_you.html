@@ -1,7 +1,20 @@
 {% extends 'base.html' %}
 
-{% block title %}Thank you!{% endblock %}
+{% block title %}Survey{% endblock %}
 
 {% block body %}
 <h1>Thank you!</h1>
+
+<h3>Here were your responses:</h3>
+<ol>
+    {% for ans in session%}
+    <li>{{ans}}</li>
+    {% endfor %}
+</ol>
+{% for msg in get_flashed_messages() %}
+<h3>{{msg}}</h3>
+<form method="POST" action="/create_session">
+    <button>Restart!</button>
+</form>
+{% endfor %}
 {% endblock %}
